@@ -7,7 +7,7 @@ services:
     restart: always
     tty: true
     volumes:
-      - ./mysql:/var/lib/mysql
+      - mysql_data:/var/lib/mysql 
     environment:
       - MYSQL_DATABASE=mysql
       - MYSQL_ROOT_PASSWORD=root
@@ -37,8 +37,7 @@ services:
       - "8080:80"
     networks:
       - my_network 
-    # volumes:
-    #   - ./nginx.conf:/etc/nginx/nginx.conf  
+  
     depends_on:
       - my-node    
 
@@ -46,3 +45,5 @@ networks:
  my_network :
     driver: bridge  
 
+volumes:
+  mysql_data: 
